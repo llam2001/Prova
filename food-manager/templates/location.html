@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>{{ location }}</h3>
+
+<table class="table table-bordered">
+<tr>
+    <th>Nome</th>
+    <th>Quantità</th>
+    <th>Scadenza</th>
+    <th></th>
+</tr>
+{% for f in foods %}
+<tr>
+    <td>{{ f[1] }}</td>
+    <td>{{ f[2] }}</td>
+    <td>{{ f[3] or "-" }}</td>
+    <td>
+        <a href="/consume/{{ f[0] }}" class="btn btn-sm btn-danger">X</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

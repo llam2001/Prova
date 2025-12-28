@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Scadenze imminenti</h3>
+
+<table class="table table-striped">
+<tr>
+    <th>Nome</th>
+    <th>Luogo</th>
+    <th>Scadenza</th>
+    <th></th>
+</tr>
+{% for f in foods %}
+<tr>
+    <td>{{ f[1] }}</td>
+    <td>{{ f[2] }}</td>
+    <td>{{ f[4] }}</td>
+    <td>
+        <a href="/consume/{{ f[0] }}" class="btn btn-sm btn-success">
+            Consumato
+        </a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+<hr>
+
+<h4>Aggiungi alimento</h4>
+<form method="POST" action="/add">
+    <input name="name" class="form-control mb-2" placeholder="Nome alimento" required>
+    
+    <select name="location" class="form-control mb-2">
+        {% for loc in locations %}
+        <option>{{ loc }}</option>
+        {% endfor %}
+    </select>
+
+    <input type="number" name="quantity" class="form-control mb-2" value="1" min="1">
+
+    <input type="date" name="expiry_date" class="form-control mb-2">
+
+    <button class="btn btn-primary">Aggiungi</button>
+</form>
+
+{% endblock %}
